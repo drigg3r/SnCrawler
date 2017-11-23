@@ -24,6 +24,7 @@ parser.add_argument("--subdomains", help="To include subdomains", action='store_
 parser.add_argument("-e", "--exclude", help="The url to exclude from being crawled(like logout page)", metavar='"http://domain.com/logout"', action="append")
 parser.add_argument("-v", "--verbose", help="To display verbose output", action='store_true')
 parser.add_argument("-o", "--output", help="The output file where you want to write the scraped URL's(in Json)", metavar="/home/user/saveLocation.txt")
+parser.add_argument("-j", "--js", help="Include the .js files", action='store_true')
 
 args = parser.parse_args()#Just parsing arguments
 
@@ -43,7 +44,7 @@ else: excluded = []
 outFile = args.output
 
 
-get, post = crawler.crawl(s, url,depth=depth, subdomains=args.subdomains, Debug=args.verbose, excluded=excluded)
+get, post = crawler.crawl(s, url,depth=depth, subdomains=args.subdomains, Debug=args.verbose, excluded=excluded, js=args.js)
 
 print "\n"
 print "Crawler completed"
